@@ -268,12 +268,7 @@ Battleship.GameState.checkRightCell = function(target) {
         return undefined;
     } else {
         var cell = this.playerCells.getChildAt(target + 10);
-    }
-
-    if (cell) {
         return cell;
-    } else {
-        return undefined;
     }
 };
 
@@ -282,12 +277,7 @@ Battleship.GameState.checkLeftCell = function(target) {
         return undefined;
     } else {
         var cell = this.playerCells.getChildAt(target - 10);
-    }
-
-    if (cell) {
         return cell;
-    } else {
-        return undefined;
     }
 };
 

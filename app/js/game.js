@@ -247,6 +247,34 @@ Battleship.GameState.getExplosion = function(cell, x, y) {
   return explosion;
 };
 
+Battleship.GameState.getSplash = function(cell, x, y) {
+  var splash = this.splashGroup.getFirstDead();
+
+  if (splash === null) {
+    splash = this.game.add.sprite(0, 0, 'splash');
+    splash.anchor.setTo(0.5, 0.5);
+
+    var animation = splash.animations.add('bigSplash', [ 0, 1, 1, 2, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11], 32, false);
+    animation.killOnComplete = true;
+
+    this.splashGroup.add(splash);
+  }
+
+  splash.revive();
+
+  splash.x = x;
+  splash.y = y;
+
+  splash.width = 64;
+  splash.height = 72;
+
+  splash.angle = this.game.rnd.integerInRange(0, 45);
+
+  splash.animations.play('bigSplash');
+
+  return splash;
+};
+
 Battleship.GameState.getHitLocation = function (target,cell, x, y) {
 //get the first dead explosion from the explosionGroup
     var hit = target === "player" ? this.hitGroup.getFirstDead() : this.hitEnemyGroup.getFirstDead();
@@ -380,6 +408,7 @@ Battleship.GameState.checkPlayerCollision = function() {
       this.score.text = this.scoreText + this.game.data.playerScore;
     } else {
         // there is nothing in the cell
+        this.getSplash(cell, cell.posX, cell.posY);
         this.miss(cell);
     }
 
@@ -387,7 +416,7 @@ Battleship.GameState.checkPlayerCollision = function() {
     if (this.reservedBullets === 0) {
       setTimeout(function() {
         Battleship.GameState.switchTurn('enemy');
-      }, 500);
+      }, 850);
     }
 
     // destroy gun and ships, reset board

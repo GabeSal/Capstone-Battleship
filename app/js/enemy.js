@@ -314,6 +314,7 @@ Battleship.GameState.checkEnemyCollision = function() {
       } else {
           // there is nothing in the cell
           this.miss(cell);
+          this.getSplash(cell, cell.posX, cell.posY);
           this.totalPlayerHits = 0;
           this.playerShipLastHit = this.playerCells.getChildIndex(cell);
           setTimeout(function () { callShootAgain(this.playerCells); }, 1200);

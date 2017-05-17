@@ -58,9 +58,9 @@ Battleship.GameState.init = function() {
       [0, 0, 0, 4, 4, 4, 4, 0, 0, 0],
     ],
     [ // board 2
-      [3, 0, 0, 0, 0, 5, 0, 0, 2, 0],
-      [3, 0, 0, 0, 0, 5, 0, 0, 2, 0],
-      [3, 0, 0, 6, 0, 5, 0, 0, 0, 0],
+      [0, 3, 0, 0, 0, 5, 0, 0, 2, 0],
+      [0, 3, 0, 0, 0, 5, 0, 0, 2, 0],
+      [0, 3, 0, 6, 0, 5, 0, 0, 0, 0],
       [0, 0, 0, 6, 0, 5, 0, 0, 0, 0],
       [0, 0, 0, 6, 0, 5, 0, 0, 0, 0],
       [0, 0, 0, 6, 0, 0, 0, 0, 0, 0],
@@ -130,8 +130,8 @@ Battleship.GameState.init = function() {
       [2, 2, 0, 0, 0, 0, 0, 0, 0, 3],
     ],
     [ // board 8
-      [2, 0, 0, 0, 6, 6, 6, 6, 6, 6],
-      [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 2, 0, 0, 6, 6, 6, 6, 6, 6],
+      [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 3, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 3, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 3, 0, 0, 0, 0, 0, 0],
@@ -524,6 +524,7 @@ Battleship.GameState.preload = function() {
   this.load.spritesheet('smoke', 'img/assets/gfx/smoke_spritesheet.png', 21, 52);
   this.load.spritesheet('fire', 'img/assets/gfx/fire_spritesheet.png', 22, 40);
   this.load.spritesheet('waves', 'img/assets/gfx/waves_spritesheet.png', 664, 160);
+  this.load.spritesheet('splash', 'img/assets/gfx/splash_spritesheet.png', 57, 62);
 
   // music
   this.load.audio('music', ['img/assets/audio/Battleship.mp3', 'img/assets/audio/Battleship.ogg']);
@@ -613,6 +614,7 @@ Battleship.GameState.create = function() {
   this.game.input.activePointer.x = this.game.width / 2;
   this.game.input.activePointer.y = this.game.height / 2;
 
+  this.splashGroup = this.game.add.group();
   this.explosionGroup = this.game.add.group();
   // hit groups responsible for drawing the hit cell over ship sprites
   this.hitGroup = this.game.add.group();
